@@ -28,6 +28,7 @@ const themeProperties = [
   '--inverse',
   '--success',
   '--success-bg',
+  '--dot-color',
   '--header-bg',
 ]
 

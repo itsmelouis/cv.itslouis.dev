@@ -13,6 +13,22 @@
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 @source "./**/*.vue";
 
+/* Keep the graphite scale identical to itslouis.dev. Semantic aliases below
+   let the CV reuse that palette without coupling components to shade numbers. */
+@theme static {
+  --color-graphite-50: #fafafa;
+  --color-graphite-100: #f5f5f5;
+  --color-graphite-200: #e5e5e5;
+  --color-graphite-300: #d4d4d4;
+  --color-graphite-400: #a3a3a3;
+  --color-graphite-500: #888888;
+  --color-graphite-600: #6b6b6b;
+  --color-graphite-700: #555555;
+  --color-graphite-800: #333333;
+  --color-graphite-900: #222222;
+  --color-graphite-950: #050505;
+}
+
 /* Semantic tokens stay as CSS variables so the existing light/dark reveal can
    snapshot and animate both themes without duplicating utility classes. */
 @theme inline {
@@ -34,17 +50,18 @@
 
 :root {
   --page: #ffffff;
-  --surface: #fafafa;
-  --surface-raised: #f5f5f5;
-  --text: #222222;
-  --text-soft: #6b6b6b;
-  --text-muted: #888888;
-  --text-faint: #a3a3a3;
-  --border: #e5e5e5;
-  --border-strong: #d4d4d4;
+  --surface: var(--color-graphite-50);
+  --surface-raised: var(--color-graphite-100);
+  --text: var(--color-graphite-900);
+  --text-soft: var(--color-graphite-600);
+  --text-muted: var(--color-graphite-500);
+  --text-faint: var(--color-graphite-400);
+  --border: var(--color-graphite-200);
+  --border-strong: var(--color-graphite-300);
   --inverse: #ffffff;
   --success: #348352;
   --success-bg: #eff8f1;
+  --dot-color: rgba(0, 0, 0, 0.15);
   --header-bg: rgba(255, 255, 255, 0.82);
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --sans: "Inter Variable", "Inter", sans-serif;
@@ -59,19 +76,20 @@
 }
 
 :root.dark {
-  --page: #050505;
-  --surface: #111111;
-  --surface-raised: #1a1a1a;
-  --text: #f5f5f5;
-  --text-soft: #d4d4d4;
-  --text-muted: #888888;
-  --text-faint: #6b6b6b;
-  --border: #222222;
-  --border-strong: #333333;
-  --inverse: #050505;
+  --page: var(--color-graphite-900);
+  --surface: var(--color-graphite-800);
+  --surface-raised: var(--color-graphite-800);
+  --text: #ffffff;
+  --text-soft: var(--color-graphite-300);
+  --text-muted: var(--color-graphite-400);
+  --text-faint: var(--color-graphite-500);
+  --border: var(--color-graphite-800);
+  --border-strong: var(--color-graphite-700);
+  --inverse: var(--color-graphite-900);
   --success: #72c18a;
-  --success-bg: #102218;
-  --header-bg: rgba(5, 5, 5, 0.82);
+  --success-bg: #2b3d30;
+  --dot-color: rgba(255, 255, 255, 0.1);
+  --header-bg: rgba(34, 34, 34, 0.82);
   color-scheme: dark;
 }
 
@@ -91,7 +109,10 @@ body {
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
-  background: var(--page);
+  background-color: var(--page);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-attachment: fixed;
   color: var(--text);
   font-size: 16px;
   line-height: 1.65;
@@ -164,7 +185,9 @@ html.theme-transitioning *::after {
   inset: 0;
   overflow: hidden;
   color: var(--text);
-  background: var(--page);
+  background-color: var(--page);
+  background-image: radial-gradient(var(--dot-color) 1px, transparent 1px);
+  background-size: 24px 24px;
   pointer-events: none;
   mask-image: radial-gradient(
     circle at var(--theme-reveal-x) var(--theme-reveal-y),
