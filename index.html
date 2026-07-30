@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#050505" media="(prefers-color-scheme: dark)" />
+    <meta name="description" content="CV de Louis Floquet, développeur Fullstack spécialisé en Vue, Nuxt, .NET et systèmes d’intelligence artificielle agentique." />
+    <meta name="keywords" content="Louis Floquet, développeur Fullstack, Vue, Nuxt, TypeScript, .NET, IA agentique, Valenciennes" />
+    <meta property="og:title" content="Louis Floquet — Développeur Fullstack & IA agentique" />
+    <meta property="og:description" content="Expériences, compétences et projets de Louis Floquet, développeur Fullstack & IA agentique." />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://cv.itslouis.dev" />
+    <meta name="twitter:card" content="summary" />
+    <title>Louis Floquet — Développeur Fullstack & IA agentique</title>
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem('theme')
+        const isDark = storedTheme ? storedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+        document.documentElement.classList.toggle('dark', isDark)
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light'
+      })()
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Louis Floquet",
+        "url": "https://itslouis.dev",
+        "email": "mailto:me@itslouis.dev",
+        "jobTitle": "Développeur Fullstack & IA agentique",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Valenciennes",
+          "addressRegion": "Hauts-de-France",
+          "addressCountry": "FR"
+        },
+        "sameAs": [
+          "https://github.com/itsmelouis",
+          "https://linkedin.com/in/louis-floquet"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

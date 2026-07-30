@@ -1,0 +1,287 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Louis Floquet",
+    "label": "Développeur Fullstack & IA agentique",
+    "email": "me@itslouis.dev",
+    "url": "https://itslouis.dev",
+    "summary": "Développeur fullstack de niveau Bac+5, spécialisé dans les environnements e-commerce et retail cross-canal. Expérience concrète en Vue, C#/.NET, TypeScript, SQL, moteurs de recherche et déploiement cloud, acquise au cours de trois années d’alternance dans une TPE. Autonome et polyvalent, j’interviens de la compréhension de systèmes existants jusqu’à la mise en production. Passionné par l’IA générative et les systèmes agentiques, j’explore activement l’intégration des LLM, agents, serveurs MCP et assistants de développement dans des processus métier et techniques. Récemment diplômé et ouvert à de nouvelles opportunités.",
+    "location": {
+      "city": "Valenciennes",
+      "countryCode": "FR",
+      "region": "Hauts-de-France"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "itsmelouis",
+        "url": "https://github.com/itsmelouis"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "louis-floquet",
+        "url": "https://linkedin.com/in/louis-floquet"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Altazion",
+      "position": "Développeur Fullstack — Alternance",
+      "url": "https://altazion.com",
+      "startDate": "2023-09-01",
+      "endDate": "2026-08-31",
+      "summary": "Participation au développement d’une plateforme de commerce unifié couvrant les problématiques e-commerce, cross-canal, phygital et CRM. Rôle polyvalent au sein d’une TPE, de la conception jusqu’au déploiement en production.",
+      "highlights": [
+        "Conception et livraison d’une bibliothèque complète de composants Vue accompagnée d’un Design System",
+        "Conception d’un SDK de moteur de recherche compatible avec les solutions de l’entreprise, intégrant Meilisearch et Algolia",
+        "Rétro-ingénierie de systèmes existants et refactoring en C#/.NET",
+        "Mise en place d’un pipeline de génération de documentation technique reposant sur un serveur MCP, des skills et un graphe de relations entre entités",
+        "Création et maintenance de pipelines CI/CD avec Azure DevOps et Azure Pipelines",
+        "Déploiement, configuration et gestion de ressources cloud depuis Azure Portal",
+        "Développement d’API et d’intégrations SQL pour des solutions e-commerce et omnicanales",
+        "Participation à la maintenance de l’infrastructure et aux mises en production"
+      ]
+    },
+    {
+      "name": "Anywr",
+      "position": "Développeur — Stage",
+      "startDate": "2023-01-01",
+      "endDate": "2023-02-01",
+      "summary": "Contribution à plusieurs mini-projets internes dans un environnement professionnel agile.",
+      "highlights": [
+        "Participation à des projets fullstack confidentiels",
+        "Montée en compétences sur les pratiques professionnelles du développement en équipe"
+      ]
+    },
+    {
+      "name": "Ax2lan",
+      "position": "Développeur 3D — Stage",
+      "startDate": "2022-05-01",
+      "endDate": "2022-06-01",
+      "summary": "Stage de découverte du monde professionnel réalisé en première année de BTS.",
+      "highlights": [
+        "Développement d’un rendu 3D interactif d’entrepôt logistique avec WebGL et Babylon.js",
+        "Génération dynamique du rendu à partir de données JSON décrivant les produits et la configuration des racks",
+        "Première expérience de livraison d’une solution client de bout en bout"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "MyDigitalSchool Lille",
+      "area": "Développement Fullstack",
+      "studyType": "MBA (Bac+5)",
+      "startDate": "2024-09-01",
+      "endDate": "2026-07-01",
+      "courses": [
+        "Architecture logicielle",
+        "Développement web fullstack",
+        "Cloud et DevOps",
+        "Gestion de projet agile"
+      ]
+    },
+    {
+      "institution": "MyDigitalSchool Lille",
+      "area": "Concepteur Développeur d’Applications (CDA)",
+      "studyType": "Bachelor (Bac+3)",
+      "startDate": "2023-09-01",
+      "endDate": "2024-07-01",
+      "courses": [
+        "Conception et développement d’applications",
+        "Développement frontend et backend",
+        "Bases de données et persistance",
+        "Architecture logicielle et méthodes agiles"
+      ]
+    },
+    {
+      "institution": "Lycée Henri Wallon — Valenciennes",
+      "area": "BTS SIO — option SLAM (Solutions Logicielles et Applications Métiers)",
+      "studyType": "BTS (Bac+2)",
+      "startDate": "2021-09-01",
+      "endDate": "2023-07-01",
+      "courses": [
+        "Programmation orientée objet et développement d’applications",
+        "Conception et exploitation de bases de données",
+        "Cybersécurité des services informatiques",
+        "Support et mise à disposition de services informatiques"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Frontend",
+      "level": "Avancé",
+      "keywords": [
+        "Vue 3",
+        "Nuxt 4",
+        "TypeScript",
+        "Tailwind CSS",
+        "ESLint",
+        "Design Systems"
+      ]
+    },
+    {
+      "name": "Backend",
+      "level": "Avancé",
+      "keywords": [
+        "C#",
+        ".NET",
+        "Node.js",
+        "REST API",
+        "SQL"
+      ]
+    },
+    {
+      "name": "Recherche et indexation",
+      "level": "Intermédiaire",
+      "keywords": [
+        "Meilisearch",
+        "Algolia",
+        "Conception de SDK",
+        "Indexation",
+        "Recherche applicative"
+      ]
+    },
+    {
+      "name": "IA générative & systèmes agentiques",
+      "level": "Intermédiaire",
+      "keywords": [
+        "LLM",
+        "Agents autonomes",
+        "Agentic workflows",
+        "Model Context Protocol (MCP)",
+        "Tool calling",
+        "Prompt engineering",
+        "Anthropic Claude API",
+        "Vercel AI SDK",
+        "Claude Code",
+        "OpenAI Codex",
+        "OpenClaw"
+      ]
+    },
+    {
+      "name": "Cloud, DevOps & CI/CD",
+      "level": "Intermédiaire",
+      "keywords": [
+        "Azure DevOps",
+        "Azure Pipelines",
+        "Azure Portal",
+        "Cloudflare Workers",
+        "Cloudflare Pages",
+        "Vercel",
+        "CI/CD",
+        "Docker",
+        "Git",
+        "pnpm",
+        "Renovate"
+      ]
+    },
+    {
+      "name": "Outils",
+      "level": "Avancé",
+      "keywords": [
+        "Visual Studio Code",
+        "Figma",
+        "Chrome DevTools",
+        "Git",
+        "Claude Code",
+        "OpenAI Codex"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Français",
+      "fluency": "Langue maternelle"
+    },
+    {
+      "language": "Anglais",
+      "fluency": "Professionnel — TOEIC 895 (B2)"
+    }
+  ],
+  "projects": [
+    {
+      "name": "itslouis.dev",
+      "description": "Portfolio personnel développé avec Nuxt 4, organisé en workspace pnpm et accompagné d’une configuration ESLint moderne, de Renovate et d’un pipeline CI/CD. Blog en cours de développement avec Nuxt Content.",
+      "highlights": [
+        "Architecture moderne organisée en monorepo avec pnpm",
+        "Déploiement sur Cloudflare Pages"
+      ],
+      "url": "https://itslouis.dev",
+      "keywords": [
+        "Nuxt 4",
+        "TypeScript",
+        "Cloudflare Pages",
+        "pnpm"
+      ]
+    },
+    {
+      "name": "Sportly",
+      "description": "Application de découverte d’activités sportives avec cartographie interactive et paiement intégré.",
+      "highlights": [
+        "Intégration d’une cartographie interactive avec MapLibre GL",
+        "Intégration de Stripe pour les paiements",
+        "Déploiement sur Vercel"
+      ],
+      "keywords": [
+        "Nuxt",
+        "MapLibre GL",
+        "Stripe",
+        "TypeScript"
+      ]
+    },
+    {
+      "name": "spotify-badge",
+      "description": "Badge SVG dynamique affichant le titre en cours d’écoute sur Spotify, servi depuis un Cloudflare Worker.",
+      "highlights": [
+        "Architecture serverless avec Cloudflare Workers",
+        "Intégration de la Spotify Web API",
+        "Génération dynamique d’un SVG à chaque requête"
+      ],
+      "keywords": [
+        "Cloudflare Workers",
+        "TypeScript",
+        "Spotify Web API",
+        "SVG"
+      ]
+    },
+    {
+      "name": "ssh-portfolio",
+      "description": "Portfolio accessible directement depuis un terminal via SSH, proposant une expérience interactive destinée aux développeurs.",
+      "highlights": [
+        "Navigation interactive dans le terminal",
+        "Projet en cours de développement"
+      ],
+      "keywords": [
+        "SSH",
+        "Node.js",
+        "TypeScript"
+      ]
+    }
+  ],
+  "interests": [
+    {
+      "name": "Cinéma"
+    },
+    {
+      "name": "Musique"
+    },
+    {
+      "name": "Football"
+    },
+    {
+      "name": "Automobile et Formule 1"
+    },
+    {
+      "name": "Technologies et intelligence artificielle",
+      "keywords": [
+        "LLM",
+        "Agents autonomes",
+        "MCP",
+        "OpenClaw",
+        "Veille technologique"
+      ]
+    }
+  ]
+}
