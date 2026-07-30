@@ -267,172 +267,560 @@ html.theme-transitioning *::after {
   }
 }
 
-/* Print keeps a purpose-built A4 layout. Screen styling is generated from the
-   utility classes Tailwind detects in the Vue templates. */
+/* The printable CV is a separate, fixed A4 composition. This keeps the web
+   layout responsive while making page breaks and density deterministic. */
+.print-resume {
+  display: none;
+}
+
 @media print {
   @page {
     size: A4;
-    margin: 14mm 15mm;
+    margin: 0;
   }
 
   :root,
   :root.dark {
     --page: #ffffff;
-    --surface: #ffffff;
-    --surface-raised: #f3f3f3;
-    --text: #111111;
-    --text-soft: #333333;
-    --text-muted: #555555;
-    --text-faint: #777777;
-    --border: #d9d9d9;
-    --border-strong: #bdbdbd;
+    --surface: #f7f7f6;
+    --surface-raised: #eeeeec;
+    --text: #181817;
+    --text-soft: #3f3f3b;
+    --text-muted: #686862;
+    --text-faint: #91918a;
+    --border: #d9d9d4;
+    --border-strong: #bdbdb7;
     --inverse: #ffffff;
     color-scheme: light;
   }
 
   html,
   body {
+    width: 210mm;
+    min-width: 210mm;
+    height: auto;
+    margin: 0;
     background: #ffffff !important;
-    font-size: 9pt;
   }
 
-  .app-header,
-  .to-top-button,
-  .site-footer {
+  body {
+    color: var(--text);
+    font-size: 8pt;
+    line-height: 1.42;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .site-shell,
+  .theme-transition-overlay {
     display: none !important;
   }
 
-  .resume {
-    width: 100%;
-    max-width: none;
-    padding: 0;
+  .print-resume {
+    display: block;
   }
 
-  .hero {
-    padding-bottom: 7mm;
-    border-bottom: 1px solid var(--border);
+  .pdf-page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    padding: 11mm 15mm 14mm;
+    background-color: #ffffff;
+    background-image: radial-gradient(rgba(24, 24, 23, 0.16) 0.35mm, transparent 0.4mm);
+    background-repeat: repeat-x;
+    background-position: 15mm 6.2mm;
+    background-size: 4.8mm 4.8mm;
+    break-after: page;
   }
 
-  .hero h1 {
-    font-size: 28pt;
+  .pdf-page:last-child {
+    break-after: auto;
   }
 
-  .role {
-    margin-bottom: 3mm;
-    font-size: 13pt;
+  .pdf-page *,
+  .pdf-page *::before,
+  .pdf-page *::after {
+    animation: none !important;
+    transition: none !important;
   }
 
-  .identity-meta {
-    margin-bottom: 4mm;
+  .pdf-page a {
+    color: inherit;
+    text-decoration: none;
   }
 
-  .summary {
-    margin-bottom: 3mm;
-    font-size: 9pt;
-    line-height: 1.5;
+  .pdf-masthead {
+    display: flex;
+    min-height: 9mm;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8mm;
+    border-bottom: 0.25mm solid var(--border);
+    padding-bottom: 3mm;
+    font-family: var(--mono);
+    font-size: 7pt;
+    color: var(--text-muted);
   }
 
-  .profile-links a {
-    padding: 0 4mm 0 0;
-  }
-  .resume-section {
-    margin-top: 8mm;
+  .pdf-masthead--compact {
+    min-height: 7mm;
   }
 
-  .section-heading {
-    min-height: auto;
-    margin-bottom: 3mm;
+  .pdf-brand,
+  .pdf-masthead-links,
+  .pdf-brand span,
+  .pdf-masthead-links a,
+  .pdf-masthead-links span {
+    display: flex;
+    align-items: center;
   }
 
-  .section-heading h2 {
-    margin: 0;
-    font-size: 15pt;
+  .pdf-brand {
+    gap: 2.5mm;
+    color: var(--text);
   }
 
-  .section-index,
-  .section-outline {
-    display: none;
+  .pdf-brand img {
+    width: 9mm;
+    height: 9mm;
+    border: 0.25mm solid var(--border-strong);
+    border-radius: 1.7mm;
   }
 
-  .timeline-item {
-    grid-template-columns: 28mm 1fr;
+  .pdf-masthead-links {
     gap: 5mm;
-    padding: 4mm 0;
+  }
+
+  .pdf-hero {
+    padding: 7mm 0 6mm;
+    border-bottom: 0.25mm solid var(--border);
+  }
+
+  .pdf-kicker {
+    margin: 0 0 1.4mm;
+    font-family: var(--mono);
+    font-size: 5.8pt;
+    letter-spacing: 0.07em;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  .pdf-hero h1 {
+    margin: 0;
+    font-size: 26pt;
+    line-height: 0.98;
+    font-weight: 690;
+    letter-spacing: -0.052em;
+  }
+
+  .pdf-role {
+    margin: 1.4mm 0 3.4mm;
+    font-size: 10.5pt;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--text-soft);
+  }
+
+  .pdf-identity,
+  .pdf-profiles {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.8mm 5mm;
+    font-family: var(--mono);
+    font-size: 6.8pt;
+    color: var(--text-muted);
+  }
+
+  .pdf-identity span,
+  .pdf-identity a,
+  .pdf-profiles a {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.2mm;
+  }
+
+  .pdf-summary {
+    max-width: 172mm;
+    margin: 3.4mm 0 2.7mm;
+    font-size: 7.7pt;
+    line-height: 1.48;
+    color: var(--text-soft);
+  }
+
+  .pdf-section {
+    margin-top: 6.5mm;
+  }
+
+  .pdf-section-title {
+    position: relative;
+    display: flex;
+    min-height: 10mm;
+    align-items: end;
+    gap: 2.2mm;
+    margin-bottom: 2.5mm;
+    overflow: hidden;
+  }
+
+  .pdf-section-title > span {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 0.9mm;
+    font-family: var(--mono);
+    font-size: 5.5pt;
+    color: var(--text-faint);
+  }
+
+  .pdf-section-title h2 {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding-bottom: 0.3mm;
+    font-size: 14.5pt;
+    line-height: 1;
+    font-weight: 650;
+    letter-spacing: -0.04em;
+  }
+
+  .pdf-section-title strong {
+    position: absolute;
+    bottom: -1.1mm;
+    left: 0;
+    font-size: 25pt;
+    line-height: 1;
+    font-weight: 780;
+    letter-spacing: -0.06em;
+    color: transparent;
+    opacity: 0.18;
+    -webkit-text-stroke: 0.25mm var(--text-muted);
+  }
+
+  .pdf-timeline {
+    border-top: 0.25mm solid var(--border);
+  }
+
+  .pdf-timeline-item {
+    display: grid;
+    grid-template-columns: 27mm minmax(0, 1fr);
+    gap: 5mm;
+    border-bottom: 0.25mm solid var(--border);
+    padding: 3mm 0;
     break-inside: avoid;
   }
 
-  .timeline-content h3 {
-    font-size: 10pt;
+  .pdf-timeline-item time {
+    padding-top: 0.5mm;
+    font-family: var(--mono);
+    font-size: 6.2pt;
+    color: var(--text-muted);
   }
 
-  .timeline-summary {
-    margin-top: 2mm;
-    font-size: 8.3pt;
-    line-height: 1.45;
+  .pdf-timeline-item h3,
+  .pdf-skill-card h3,
+  .pdf-project h3,
+  .pdf-details-grid h3 {
+    margin: 0;
+    font-size: 8.8pt;
+    line-height: 1.3;
+    font-weight: 650;
+    letter-spacing: -0.018em;
   }
 
-  .detail-list {
-    gap: 1mm;
-    margin-top: 2mm;
-    font-size: 7.7pt;
-    line-height: 1.35;
+  .pdf-organization {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8mm;
+    margin: 0.6mm 0 0;
+    font-family: var(--mono);
+    font-size: 6.2pt;
+    color: var(--text-muted);
   }
 
-  .skills-grid {
-    gap: 2mm;
+  .pdf-item-summary {
+    margin: 1.8mm 0 0;
+    font-size: 7.15pt;
+    line-height: 1.42;
+    color: var(--text-soft);
   }
 
-  .skill-group {
+  .pdf-timeline-item ul {
+    display: grid;
+    gap: 0.55mm;
+    margin: 1.7mm 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 6.6pt;
+    line-height: 1.34;
+    color: var(--text-soft);
+  }
+
+  .pdf-timeline-item li {
+    position: relative;
+    padding-left: 3.3mm;
+  }
+
+  .pdf-timeline-item li::before {
+    position: absolute;
+    left: 0.4mm;
+    content: '—';
+    color: var(--text-faint);
+  }
+
+  .pdf-education {
+    margin-top: 6mm;
+  }
+
+  .pdf-education-item {
+    padding: 4mm 0;
+  }
+
+  .pdf-title-with-badge {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 5mm;
+  }
+
+  .pdf-title-with-badge > span {
+    flex: none;
+    border: 0.25mm solid var(--border);
+    border-radius: 1.2mm;
+    padding: 0.7mm 1.6mm;
+    font-family: var(--mono);
+    font-size: 5.9pt;
+    color: var(--text-muted);
+  }
+
+  .pdf-course-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 5mm;
+  }
+
+  .pdf-skills {
+    margin-top: 7mm;
+  }
+
+  .pdf-skills-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.2mm;
+  }
+
+  .pdf-skill-card {
+    min-height: 27mm;
+    border: 0.25mm solid var(--border);
+    border-radius: 2mm;
     padding: 3mm;
     break-inside: avoid;
   }
 
-  .skill-group:hover,
-  .project-item:hover {
-    transform: none;
+  .pdf-skill-card > div {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 2mm;
+    margin-bottom: 2.2mm;
   }
 
-  .project-item {
-    padding: 4mm 0;
+  .pdf-skill-card > div > span {
+    padding-top: 0.4mm;
+    font-family: var(--mono);
+    font-size: 5.4pt;
+    color: var(--text-faint);
+    text-transform: uppercase;
+  }
+
+  .pdf-skill-card ul,
+  .pdf-project ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pdf-skill-card li,
+  .pdf-project li {
+    border-radius: 0.8mm;
+    padding: 0.65mm 1.2mm;
+    background: var(--surface-raised);
+    font-family: var(--mono);
+    font-size: 5.8pt;
+    line-height: 1.35;
+    color: var(--text-soft);
+  }
+
+  .pdf-projects {
+    margin-top: 6mm;
+  }
+
+  .pdf-project-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 0.25mm solid var(--border);
+  }
+
+  .pdf-project {
+    display: grid;
+    grid-template-columns: 4mm minmax(0, 1fr);
+    gap: 2mm;
+    min-height: 42mm;
+    border-bottom: 0.25mm solid var(--border);
+    padding: 3.5mm 3.5mm 3.5mm 0;
     break-inside: avoid;
   }
 
-  .project-content > p {
-    font-size: 8pt;
-  }
-  .project-highlights {
-    display: none;
+  .pdf-project:nth-child(odd) {
+    border-right: 0.25mm solid var(--border);
   }
 
-  .details-grid {
-    gap: 12mm;
-    padding-top: 3mm;
+  .pdf-project:nth-child(even) {
+    padding-right: 0;
+    padding-left: 3.5mm;
   }
 
-  .contact-section {
-    margin-top: 8mm;
-    padding: 5mm;
+  .pdf-project > svg {
+    margin-top: 0.4mm;
+    color: var(--text-faint);
+  }
+
+  .pdf-project h3 a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8mm;
+  }
+
+  .pdf-project p {
+    margin: 1.8mm 0 2.2mm;
+    font-size: 6.9pt;
+    line-height: 1.42;
+    color: var(--text-soft);
+  }
+
+  .pdf-profile-details {
+    margin-top: 7mm;
+  }
+
+  .pdf-details-grid {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 10mm;
+    border-top: 0.25mm solid var(--border);
+    padding-top: 3.4mm;
+  }
+
+  .pdf-details-grid h3 {
+    margin-bottom: 2.2mm;
+    font-family: var(--mono);
+    font-size: 6.8pt;
+  }
+
+  .pdf-details-grid dl {
+    margin: 0;
+  }
+
+  .pdf-details-grid dl > div,
+  .pdf-interest-list li {
+    border-bottom: 0.25mm solid var(--border);
+    padding: 1.5mm 0;
+  }
+
+  .pdf-details-grid dt {
+    font-size: 7.2pt;
+    font-weight: 620;
+  }
+
+  .pdf-details-grid dd {
+    margin: 0.4mm 0 0;
+    font-size: 6.2pt;
+    color: var(--text-muted);
+  }
+
+  .pdf-interest-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 5mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pdf-interest-list li {
+    display: flex;
+    flex-direction: column;
+    font-size: 7pt;
+  }
+
+  .pdf-interest-list small {
+    margin-top: 0.5mm;
+    font-family: var(--mono);
+    font-size: 5.2pt;
+    line-height: 1.35;
+    color: var(--text-faint);
+  }
+
+  .pdf-contact {
+    position: absolute;
+    right: 15mm;
+    bottom: 18mm;
+    left: 15mm;
+    display: flex;
+    min-height: 29mm;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8mm;
+    border-radius: 2.5mm;
+    padding: 4.5mm 5.5mm;
+    color: #ffffff;
+    background: var(--text);
     break-inside: avoid;
-    color: #111111;
-    background: #f3f3f3;
   }
 
-  .contact-section h2 {
-    margin: 1mm 0;
-    font-size: 18pt;
+  .pdf-contact > div:first-child > span {
+    font-family: var(--mono);
+    font-size: 5.2pt;
+    letter-spacing: 0.06em;
+    color: rgba(255, 255, 255, 0.62);
+    text-transform: uppercase;
   }
 
-  .contact-section p {
-    margin-bottom: 2mm;
-    color: #333333;
+  .pdf-contact h2 {
+    margin: 0.8mm 0 0;
+    font-size: 17pt;
+    line-height: 1;
+    font-weight: 650;
+    letter-spacing: -0.045em;
   }
 
-  .contact-eyebrow,
-  .contact-link {
-    color: #111111;
+  .pdf-contact > div:last-child {
+    display: grid;
+    justify-items: end;
+    gap: 1.5mm;
+    font-family: var(--mono);
+    font-size: 6.8pt;
+    color: rgba(255, 255, 255, 0.78);
   }
 
-  a {
-    text-decoration: none !important;
+  .pdf-contact > div:last-child a:first-child {
+    display: inline-flex;
+    align-items: center;
+    gap: 1mm;
+    color: #ffffff;
+  }
+
+  .pdf-footer {
+    position: absolute;
+    right: 15mm;
+    bottom: 6.5mm;
+    left: 15mm;
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.25mm solid var(--border);
+    padding-top: 2.2mm;
+    font-family: var(--mono);
+    font-size: 5.2pt;
+    color: var(--text-faint);
   }
 }
