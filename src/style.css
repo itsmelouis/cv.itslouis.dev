@@ -8,7 +8,7 @@
   src: url("@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2-variations");
 }
 
-@layer theme, utilities;
+@layer theme, base, utilities;
 @import "tailwindcss/theme.css" layer(theme);
 @import "tailwindcss/utilities.css" layer(utilities) source(none);
 @source "./**/*.vue";
@@ -125,8 +125,12 @@ a {
   -webkit-tap-highlight-color: transparent;
 }
 
-a {
-  color: inherit;
+/* Keep the reset below Tailwind utilities so text color classes and their
+   hover variants can override the browser's default link color. */
+@layer base {
+  a {
+    color: inherit;
+  }
 }
 
 button {
