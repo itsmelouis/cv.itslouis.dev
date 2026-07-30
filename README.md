@@ -19,6 +19,7 @@ Live at **[cv.itslouis.dev](https://cv.itslouis.dev)**.
 - **[Vue 3](https://vuejs.org)** — reactive user interface built with the Composition API
 - **[TypeScript](https://www.typescriptlang.org)** — type-safe application code
 - **[Vite](https://vite.dev)** — development server and production build tooling
+- **[Tailwind CSS 4](https://tailwindcss.com)** — utility-first styling compiled through the Vite plugin
 - **[Lucide](https://lucide.dev)** — interface icons
 - **[Cloudflare Workers](https://workers.cloudflare.com)** — static asset hosting and deployment
 
@@ -63,3 +64,5 @@ pnpm deploy
 ```
 
 Security and cache headers are defined in [`public/_headers`](./public/_headers).
+
+The production stylesheet is minified and content-aware. Tailwind scans only `src/**/*.vue`, omits unused utilities and Preflight, and emits a single hashed CSS asset.
