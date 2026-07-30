@@ -37,8 +37,13 @@ function updateScrollState() {
 function applyTheme(dark: boolean) {
   isDark.value = dark
   document.documentElement.classList.toggle('dark', dark)
-  document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
-  localStorage.setItem('theme', dark ? 'dark' : 'light')
+
+  try {
+    localStorage.setItem('theme', dark ? 'dark' : 'light')
+  }
+  catch {
+    // The selected theme still applies when storage is unavailable.
+  }
 }
 
 async function toggleTheme(event: MouseEvent) {
@@ -81,7 +86,15 @@ function toTop() {
 }
 
 onMounted(() => {
-  const storedTheme = localStorage.getItem('theme')
+  let storedTheme: string | null = null
+
+  try {
+    storedTheme = localStorage.getItem('theme')
+  }
+  catch {
+    // Fall back to the operating-system preference.
+  }
+
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
   applyTheme(storedTheme ? storedTheme === 'dark' : prefersDark)
   updateScrollState()
@@ -117,10 +130,10 @@ onUnmounted(() => window.removeEventListener('scroll', updateScrollState))
         <p class="summary">{{ resume.basics.summary }}</p>
 
         <div class="profile-links">
-          <a v-if="githubProfile" :href="githubProfile.url" target="_blank" rel="noreferrer">
+          <a v-if="githubProfile" :href="githubProfile.url" target="_blank" rel="noopener noreferrer">
             <BrandIcon brand="github" :size="15" /> GitHub <ArrowUpRight :size="13" aria-hidden="true" />
           </a>
-          <a v-if="linkedinProfile" :href="linkedinProfile.url" target="_blank" rel="noreferrer">
+          <a v-if="linkedinProfile" :href="linkedinProfile.url" target="_blank" rel="noopener noreferrer">
             <BrandIcon brand="linkedin" :size="15" /> LinkedIn <ArrowUpRight :size="13" aria-hidden="true" />
           </a>
         </div>
@@ -207,7 +220,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateScrollState))
 
     <footer class="site-footer">
       <span>© {{ new Date().getFullYear() }} Louis Floquet</span>
-      <a href="https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750" target="_blank" rel="noreferrer">
+      <a href="https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750" target="_blank" rel="noopener noreferrer">
         JSON Resume <ArrowUpRight :size="12" aria-hidden="true" />
       </a>
     </footer>

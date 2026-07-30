@@ -29,13 +29,13 @@ const emit = defineEmits<{
     </div>
 
     <nav class="header-actions" aria-label="Navigation utilitaire">
-      <a class="header-text-link" href="https://itslouis.dev" target="_blank" rel="noreferrer">
+      <a class="header-text-link" href="https://itslouis.dev" target="_blank" rel="noopener noreferrer">
         itslouis.dev
       </a>
-      <a class="icon-button social-button" href="https://github.com/itsmelouis" target="_blank" rel="noreferrer" aria-label="GitHub de Louis Floquet">
+      <a class="icon-button social-button" href="https://github.com/itsmelouis" target="_blank" rel="noopener noreferrer" aria-label="GitHub de Louis Floquet">
         <BrandIcon brand="github" :size="17" />
       </a>
-      <a class="icon-button social-button" href="https://linkedin.com/in/louis-floquet" target="_blank" rel="noreferrer" aria-label="LinkedIn de Louis Floquet">
+      <a class="icon-button social-button" href="https://linkedin.com/in/louis-floquet" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Louis Floquet">
         <BrandIcon brand="linkedin" :size="17" />
       </a>
       <button class="print-button" type="button" aria-label="Imprimer ou enregistrer le CV en PDF" @click="emit('print')">

@@ -17,3 +17,15 @@ pnpm dev
 pnpm build
 pnpm preview
 ```
+
+## Déploiement Cloudflare
+
+Le site est déployé comme Worker avec assets statiques et le domaine personnalisé `cv.itslouis.dev`.
+
+```bash
+npx wrangler login
+pnpm deploy:dry-run
+pnpm deploy
+```
+
+Les en-têtes de sécurité et de cache sont définis dans `public/_headers`.

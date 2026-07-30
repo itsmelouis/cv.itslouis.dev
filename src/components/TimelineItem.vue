@@ -19,7 +19,7 @@ const { details = [], badge } = defineProps<{
       <div class="timeline-title-row">
         <div>
           <h3>{{ title }}</h3>
-          <a v-if="url" class="organization-link" :href="url" target="_blank" rel="noreferrer">
+          <a v-if="url" class="organization-link" :href="url" target="_blank" rel="noopener noreferrer">
             {{ organization }}
             <ArrowUpRight :size="13" aria-hidden="true" />
           </a>

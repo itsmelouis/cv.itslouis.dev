@@ -14,6 +14,7 @@
   --header-bg: rgba(255, 255, 255, 0.82);
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   --sans: "Inter Variable", "Inter", sans-serif;
+  color-scheme: light;
   color: var(--text);
   background: var(--page);
   font-family: var(--sans);
@@ -37,6 +38,7 @@
   --success: #72c18a;
   --success-bg: #102218;
   --header-bg: rgba(5, 5, 5, 0.82);
+  color-scheme: dark;
 }
 
 * {

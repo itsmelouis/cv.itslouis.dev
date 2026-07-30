@@ -13,7 +13,7 @@ defineProps<{
     <div class="project-content">
       <div class="project-title-row">
         <h3>
-          <a v-if="project.url" :href="project.url" target="_blank" rel="noreferrer">
+          <a v-if="project.url" :href="project.url" target="_blank" rel="noopener noreferrer">
             {{ project.name }}
             <ArrowUpRight :size="14" aria-hidden="true" />
           </a>
