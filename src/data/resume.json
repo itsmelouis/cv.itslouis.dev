@@ -112,25 +112,12 @@
     {
       "name": "Frontend",
       "level": "Avancé",
-      "keywords": [
-        "Vue 3",
-        "Nuxt 4",
-        "TypeScript",
-        "Tailwind CSS",
-        "ESLint",
-        "Design Systems"
-      ]
+      "keywords": ["Vue 3", "Nuxt 4", "TypeScript", "Tailwind CSS", "ESLint", "Design Systems"]
     },
     {
       "name": "Backend",
       "level": "Avancé",
-      "keywords": [
-        "C#",
-        ".NET",
-        "Node.js",
-        "REST API",
-        "SQL"
-      ]
+      "keywords": ["C#", ".NET", "Node.js", "REST API", "SQL"]
     },
     {
       "name": "Recherche et indexation",
@@ -209,12 +196,7 @@
         "Déploiement sur Cloudflare Pages"
       ],
       "url": "https://itslouis.dev",
-      "keywords": [
-        "Nuxt 4",
-        "TypeScript",
-        "Cloudflare Pages",
-        "pnpm"
-      ]
+      "keywords": ["Nuxt 4", "TypeScript", "Cloudflare Pages", "pnpm"]
     },
     {
       "name": "Sportly",
@@ -224,12 +206,7 @@
         "Intégration de Stripe pour les paiements",
         "Déploiement sur Vercel"
       ],
-      "keywords": [
-        "Nuxt",
-        "MapLibre GL",
-        "Stripe",
-        "TypeScript"
-      ]
+      "keywords": ["Nuxt", "MapLibre GL", "Stripe", "TypeScript"]
     },
     {
       "name": "spotify-badge",
@@ -239,25 +216,13 @@
         "Intégration de la Spotify Web API",
         "Génération dynamique d’un SVG à chaque requête"
       ],
-      "keywords": [
-        "Cloudflare Workers",
-        "TypeScript",
-        "Spotify Web API",
-        "SVG"
-      ]
+      "keywords": ["Cloudflare Workers", "TypeScript", "Spotify Web API", "SVG"]
     },
     {
       "name": "ssh-portfolio",
       "description": "Portfolio accessible directement depuis un terminal via SSH, proposant une expérience interactive destinée aux développeurs.",
-      "highlights": [
-        "Navigation interactive dans le terminal",
-        "Projet en cours de développement"
-      ],
-      "keywords": [
-        "SSH",
-        "Node.js",
-        "TypeScript"
-      ]
+      "highlights": ["Navigation interactive dans le terminal", "Projet en cours de développement"],
+      "keywords": ["SSH", "Node.js", "TypeScript"]
     }
   ],
   "interests": [
@@ -275,13 +240,7 @@
     },
     {
       "name": "Technologies et intelligence artificielle",
-      "keywords": [
-        "LLM",
-        "Agents autonomes",
-        "MCP",
-        "OpenClaw",
-        "Veille technologique"
-      ]
+      "keywords": ["LLM", "Agents autonomes", "MCP", "OpenClaw", "Veille technologique"]
     }
   ]
 }

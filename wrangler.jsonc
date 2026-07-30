@@ -4,12 +4,12 @@
   "compatibility_date": "2026-07-29",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "single-page-application",
   },
   "routes": [
     {
       "pattern": "cv.itslouis.dev",
-      "custom_domain": true
-    }
-  ]
+      "custom_domain": true,
+    },
+  ],
 }

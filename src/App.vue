@@ -30,8 +30,12 @@ const themeProperties = [
   '--header-bg',
 ]
 
-const githubProfile = computed(() => resume.basics.profiles.find(profile => profile.network === 'GitHub'))
-const linkedinProfile = computed(() => resume.basics.profiles.find(profile => profile.network === 'LinkedIn'))
+const githubProfile = computed(() =>
+  resume.basics.profiles.find((profile) => profile.network === 'GitHub'),
+)
+const linkedinProfile = computed(() =>
+  resume.basics.profiles.find((profile) => profile.network === 'LinkedIn'),
+)
 
 const dateFormatter = new Intl.DateTimeFormat('fr-FR', {
   month: 'short',
@@ -56,16 +60,14 @@ function applyTheme(dark: boolean) {
 
   try {
     localStorage.setItem('theme', dark ? 'dark' : 'light')
-  }
-  catch {
+  } catch {
     // The selected theme still applies when storage is unavailable.
   }
 }
 
 function createThemeSnapshot(x: number, y: number) {
   const siteShell = document.querySelector<HTMLElement>('.site-shell')
-  if (!siteShell)
-    return null
+  if (!siteShell) return null
 
   const rootStyles = getComputedStyle(document.documentElement)
   const overlay = document.createElement('div')
@@ -84,7 +86,7 @@ function createThemeSnapshot(x: number, y: number) {
 
   snapshot.classList.add('theme-transition-snapshot')
   snapshot.removeAttribute('id')
-  snapshot.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'))
+  snapshot.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'))
 
   const floatingElements = snapshot.querySelectorAll<HTMLElement>('.app-header, .to-top-button')
   overlay.appendChild(snapshot)
@@ -98,8 +100,7 @@ function createThemeSnapshot(x: number, y: number) {
 }
 
 async function toggleTheme(event: MouseEvent) {
-  if (isThemeTransitioning)
-    return
+  if (isThemeTransitioning) return
 
   const nextTheme = !isDark.value
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -125,13 +126,10 @@ async function toggleTheme(event: MouseEvent) {
   try {
     applyTheme(nextTheme)
     await nextTick()
-    await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()))
 
     const animation = overlay.animate(
-      [
-        { '--theme-reveal-radius': '0px' },
-        { '--theme-reveal-radius': `${radius}px` },
-      ],
+      [{ '--theme-reveal-radius': '0px' }, { '--theme-reveal-radius': `${radius}px` }],
       {
         duration: 400,
         easing: 'cubic-bezier(0, 0, 0.2, 1)',
@@ -140,8 +138,7 @@ async function toggleTheme(event: MouseEvent) {
     )
 
     await animation.finished.catch(() => undefined)
-  }
-  finally {
+  } finally {
     overlay.remove()
     document.documentElement.classList.remove('theme-transitioning')
     isThemeTransitioning = false
@@ -161,8 +158,7 @@ onMounted(() => {
 
   try {
     storedTheme = localStorage.getItem('theme')
-  }
-  catch {
+  } catch {
     // Fall back to the operating-system preference.
   }
 
@@ -189,31 +185,69 @@ onUnmounted(() => {
       @toggle-theme="toggleTheme"
     />
 
-    <main class="resume page-content mx-auto w-[min(calc(100%_-_40px),48rem)] pt-[126px] pb-20 min-[721px]:w-[min(calc(100%_-_64px),48rem)] min-[721px]:pt-[152px] min-[721px]:pb-28">
+    <main
+      class="resume page-content mx-auto w-[min(calc(100%_-_40px),48rem)] pt-[126px] pb-20 min-[721px]:w-[min(calc(100%_-_64px),48rem)] min-[721px]:pt-[152px] min-[721px]:pb-28"
+    >
       <section class="hero relative" aria-labelledby="name">
-        <h1 id="name" class="mb-0.5 text-[clamp(2.6rem,7vw,4rem)] leading-[1.05] font-[650] tracking-[-0.052em] text-text">{{ resume.basics.name }}</h1>
-        <p class="role mb-6 text-[clamp(1.1rem,3vw,1.35rem)] tracking-[-0.022em] text-text-soft">{{ resume.basics.label }}</p>
+        <h1
+          id="name"
+          class="mb-0.5 text-[clamp(2.6rem,7vw,4rem)] leading-[1.05] font-[650] tracking-[-0.052em] text-text"
+        >
+          {{ resume.basics.name }}
+        </h1>
+        <p class="role mb-6 text-[clamp(1.1rem,3vw,1.35rem)] tracking-[-0.022em] text-text-soft">
+          {{ resume.basics.label }}
+        </p>
 
-        <div class="identity-meta mb-8 flex flex-col flex-wrap gap-x-[18px] gap-y-[9px] font-mono text-xs text-text-muted min-[441px]:flex-row">
-          <span class="inline-flex items-center gap-1.5"><MapPin :size="15" aria-hidden="true" /> {{ resume.basics.location.city }}, {{ resume.basics.location.region }}</span>
-          <a class="inline-flex items-center gap-1.5 no-underline transition-colors duration-200 hover:text-text" :href="`mailto:${resume.basics.email}?subject=cv.itslouis.dev%20%7C%20`">
+        <div
+          class="identity-meta mb-8 flex flex-col flex-wrap gap-x-[18px] gap-y-[9px] font-mono text-xs text-text-muted min-[441px]:flex-row"
+        >
+          <span class="inline-flex items-center gap-1.5"
+            ><MapPin :size="15" aria-hidden="true" /> {{ resume.basics.location.city }},
+            {{ resume.basics.location.region }}</span
+          >
+          <a
+            class="inline-flex items-center gap-1.5 no-underline transition-colors duration-200 hover:text-text"
+            :href="`mailto:${resume.basics.email}?subject=cv.itslouis.dev%20%7C%20`"
+          >
             <Mail :size="15" aria-hidden="true" /> {{ resume.basics.email }}
           </a>
         </div>
 
-        <p class="summary mb-[25px] text-[15px] leading-[1.75] text-text-soft min-[721px]:text-[17px] min-[721px]:leading-[1.78]">{{ resume.basics.summary }}</p>
+        <p
+          class="summary mb-[25px] text-[15px] leading-[1.75] text-text-soft min-[721px]:text-[17px] min-[721px]:leading-[1.78]"
+        >
+          {{ resume.basics.summary }}
+        </p>
 
         <div class="profile-links flex flex-wrap gap-[9px]">
-          <a v-if="githubProfile" class="relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm px-2 py-[5px] font-mono text-[13px] text-text no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-text before:content-[''] before:transition-[height] before:duration-250 hover:text-inverse hover:before:h-full" :href="githubProfile.url" target="_blank" rel="noopener noreferrer">
-            <BrandIcon brand="github" :size="15" /> GitHub <ArrowUpRight :size="13" aria-hidden="true" />
+          <a
+            v-if="githubProfile"
+            class="relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm px-2 py-[5px] font-mono text-[13px] text-text no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-text before:content-[''] before:transition-[height] before:duration-250 hover:text-inverse hover:before:h-full"
+            :href="githubProfile.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BrandIcon brand="github" :size="15" /> GitHub
+            <ArrowUpRight :size="13" aria-hidden="true" />
           </a>
-          <a v-if="linkedinProfile" class="relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm px-2 py-[5px] font-mono text-[13px] text-text no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-text before:content-[''] before:transition-[height] before:duration-250 hover:text-inverse hover:before:h-full" :href="linkedinProfile.url" target="_blank" rel="noopener noreferrer">
-            <BrandIcon brand="linkedin" :size="15" /> LinkedIn <ArrowUpRight :size="13" aria-hidden="true" />
+          <a
+            v-if="linkedinProfile"
+            class="relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm px-2 py-[5px] font-mono text-[13px] text-text no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-text before:content-[''] before:transition-[height] before:duration-250 hover:text-inverse hover:before:h-full"
+            :href="linkedinProfile.url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <BrandIcon brand="linkedin" :size="15" /> LinkedIn
+            <ArrowUpRight :size="13" aria-hidden="true" />
           </a>
         </div>
       </section>
 
-      <section class="resume-section mt-[78px] min-[721px]:mt-[104px]" aria-labelledby="experience-title">
+      <section
+        class="resume-section mt-[78px] min-[721px]:mt-[104px]"
+        aria-labelledby="experience-title"
+      >
         <SectionHeading id="experience-title" title="Expérience" index="01" />
         <div class="timeline-list border-t border-border">
           <TimelineItem
@@ -229,7 +263,10 @@ onUnmounted(() => {
         </div>
       </section>
 
-      <section class="resume-section mt-[78px] min-[721px]:mt-[104px]" aria-labelledby="education-title">
+      <section
+        class="resume-section mt-[78px] min-[721px]:mt-[104px]"
+        aria-labelledby="education-title"
+      >
         <SectionHeading id="education-title" title="Formation" index="02" />
         <div class="timeline-list border-t border-border">
           <TimelineItem
@@ -244,24 +281,37 @@ onUnmounted(() => {
         </div>
       </section>
 
-      <section class="resume-section mt-[78px] min-[721px]:mt-[104px]" aria-labelledby="skills-title">
+      <section
+        class="resume-section mt-[78px] min-[721px]:mt-[104px]"
+        aria-labelledby="skills-title"
+      >
         <SectionHeading id="skills-title" title="Compétences" index="03" />
         <div class="skills-grid grid grid-cols-1 gap-3 min-[721px]:grid-cols-2">
           <SkillGroup v-for="skill in resume.skills" :key="skill.name" :skill="skill" />
         </div>
       </section>
 
-      <section class="resume-section mt-[78px] min-[721px]:mt-[104px]" aria-labelledby="projects-title">
+      <section
+        class="resume-section mt-[78px] min-[721px]:mt-[104px]"
+        aria-labelledby="projects-title"
+      >
         <SectionHeading id="projects-title" title="Projets" index="04" />
         <div class="project-list border-t border-border">
           <ProjectItem v-for="project in resume.projects" :key="project.name" :project="project" />
         </div>
       </section>
 
-      <section class="resume-section details-section mt-[78px] min-[721px]:mt-[104px]" aria-labelledby="more-title">
+      <section
+        class="resume-section details-section mt-[78px] min-[721px]:mt-[104px]"
+        aria-labelledby="more-title"
+      >
         <SectionHeading id="more-title" title="En quelques mots" index="05" />
-        <div class="details-grid grid grid-cols-1 gap-11 border-t border-border pt-7 min-[721px]:grid-cols-[0.8fr_1.2fr] min-[721px]:gap-[60px]">
-          <div class="detail-column [&>h3]:mb-[19px] [&>h3]:font-mono [&>h3]:text-xs [&>h3]:leading-[1.4] [&>h3]:font-[620] [&>h3]:tracking-[-0.02em] [&>h3]:text-text">
+        <div
+          class="details-grid grid grid-cols-1 gap-11 border-t border-border pt-7 min-[721px]:grid-cols-[0.8fr_1.2fr] min-[721px]:gap-[60px]"
+        >
+          <div
+            class="detail-column [&>h3]:mb-[19px] [&>h3]:font-mono [&>h3]:text-xs [&>h3]:leading-[1.4] [&>h3]:font-[620] [&>h3]:tracking-[-0.02em] [&>h3]:text-text"
+          >
             <h3>Langues</h3>
             <dl class="language-list m-0 [&>div]:border-b [&>div]:border-border [&>div]:py-[13px]">
               <div v-for="language in resume.languages" :key="language.language">
@@ -270,31 +320,67 @@ onUnmounted(() => {
               </div>
             </dl>
           </div>
-          <div class="detail-column [&>h3]:mb-[19px] [&>h3]:font-mono [&>h3]:text-xs [&>h3]:leading-[1.4] [&>h3]:font-[620] [&>h3]:tracking-[-0.02em] [&>h3]:text-text">
+          <div
+            class="detail-column [&>h3]:mb-[19px] [&>h3]:font-mono [&>h3]:text-xs [&>h3]:leading-[1.4] [&>h3]:font-[620] [&>h3]:tracking-[-0.02em] [&>h3]:text-text"
+          >
             <h3>Centres d’intérêt</h3>
             <ul class="interest-list m-0 grid list-none gap-0 p-0">
-              <li v-for="interest in resume.interests" :key="interest.name" class="flex flex-col border-b border-border py-2.5 text-[13px] text-text-soft">
+              <li
+                v-for="interest in resume.interests"
+                :key="interest.name"
+                class="flex flex-col border-b border-border py-2.5 text-[13px] text-text-soft"
+              >
                 <span>{{ interest.name }}</span>
-                <small v-if="interest.keywords?.length" class="mt-[3px] font-mono text-[9px] leading-[1.55] text-text-faint">{{ interest.keywords.join(' · ') }}</small>
+                <small
+                  v-if="interest.keywords?.length"
+                  class="mt-[3px] font-mono text-[9px] leading-[1.55] text-text-faint"
+                  >{{ interest.keywords.join(' · ') }}</small
+                >
               </li>
             </ul>
           </div>
         </div>
       </section>
 
-      <section class="contact-section mt-[84px] rounded-xl bg-text px-[25px] py-[31px] text-inverse min-[721px]:mt-28 min-[721px]:p-[42px]" aria-labelledby="contact-title">
-        <span class="contact-eyebrow font-mono text-[10px] tracking-[0.08em] text-[color-mix(in_srgb,var(--inverse)_60%,transparent)] uppercase">Une idée, un poste, un projet ?</span>
-        <h2 id="contact-title" class="mt-[7px] mb-2.5 text-[clamp(2.1rem,7vw,3.3rem)] leading-[1.05] font-[630] tracking-[-0.055em]">Échangeons.</h2>
-        <p class="mb-[25px] max-w-[540px] text-sm text-[color-mix(in_srgb,var(--inverse)_72%,transparent)]">Je suis disponible pour discuter de nouvelles opportunités autour du web, du produit et des systèmes agentiques.</p>
-        <a class="contact-link relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm font-mono text-sm text-inverse no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-inverse before:content-[''] before:transition-[height] before:duration-250 hover:text-text hover:before:h-full" :href="`mailto:${resume.basics.email}?subject=cv.itslouis.dev%20%7C%20`">
+      <section
+        class="contact-section mt-[84px] rounded-xl bg-text px-[25px] py-[31px] text-inverse min-[721px]:mt-28 min-[721px]:p-[42px]"
+        aria-labelledby="contact-title"
+      >
+        <span
+          class="contact-eyebrow font-mono text-[10px] tracking-[0.08em] text-[color-mix(in_srgb,var(--inverse)_60%,transparent)] uppercase"
+          >Une idée, un poste, un projet ?</span
+        >
+        <h2
+          id="contact-title"
+          class="mt-[7px] mb-2.5 text-[clamp(2.1rem,7vw,3.3rem)] leading-[1.05] font-[630] tracking-[-0.055em]"
+        >
+          Échangeons.
+        </h2>
+        <p
+          class="mb-[25px] max-w-[540px] text-sm text-[color-mix(in_srgb,var(--inverse)_72%,transparent)]"
+        >
+          Je suis disponible pour discuter de nouvelles opportunités autour du web, du produit et
+          des systèmes agentiques.
+        </p>
+        <a
+          class="contact-link relative z-0 inline-flex items-center gap-1.5 overflow-hidden rounded-sm font-mono text-sm text-inverse no-underline transition-colors duration-250 before:absolute before:inset-x-0 before:bottom-0 before:-z-10 before:h-0 before:bg-inverse before:content-[''] before:transition-[height] before:duration-250 hover:text-text hover:before:h-full"
+          :href="`mailto:${resume.basics.email}?subject=cv.itslouis.dev%20%7C%20`"
+        >
           {{ resume.basics.email }} <ArrowUpRight :size="17" aria-hidden="true" />
         </a>
       </section>
     </main>
 
-    <footer class="site-footer mx-auto flex w-[min(calc(100%_-_40px),48rem)] flex-col items-start justify-between gap-[7px] border-t border-border pt-[27px] pb-7 font-mono text-[10px] text-text-faint min-[441px]:flex-row min-[441px]:gap-5 min-[721px]:w-[min(calc(100%_-_64px),48rem)] min-[721px]:items-center min-[721px]:pb-[38px]">
+    <footer
+      class="site-footer mx-auto flex w-[min(calc(100%_-_40px),48rem)] flex-col items-start justify-between gap-[7px] border-t border-border pt-[27px] pb-7 font-mono text-[10px] text-text-faint min-[441px]:flex-row min-[441px]:gap-5 min-[721px]:w-[min(calc(100%_-_64px),48rem)] min-[721px]:items-center min-[721px]:pb-[38px]"
+    >
       <span>© {{ new Date().getFullYear() }} Louis Floquet</span>
-      <a class="inline-flex items-center gap-1 no-underline hover:text-text" href="https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750" target="_blank" rel="noopener noreferrer">
+      <a
+        class="inline-flex items-center gap-1 no-underline hover:text-text"
+        href="https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         JSON Resume <ArrowUpRight :size="12" aria-hidden="true" />
       </a>
     </footer>
