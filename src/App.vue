@@ -11,8 +11,25 @@ import resumeData from './data/resume.json'
 import type { Resume } from './types/resume'
 
 const resume = resumeData as Resume
-const isDark = ref(false)
+const isDark = ref(document.documentElement.classList.contains('dark'))
 const showToTop = ref(false)
+let isThemeTransitioning = false
+
+const themeProperties = [
+  '--page',
+  '--surface',
+  '--surface-raised',
+  '--text',
+  '--text-soft',
+  '--text-muted',
+  '--text-faint',
+  '--border',
+  '--border-strong',
+  '--inverse',
+  '--success',
+  '--success-bg',
+  '--header-bg',
+]
 
 const githubProfile = computed(() => resume.basics.profiles.find(profile => profile.network === 'GitHub'))
 const linkedinProfile = computed(() => resume.basics.profiles.find(profile => profile.network === 'LinkedIn'))
@@ -46,35 +63,90 @@ function applyTheme(dark: boolean) {
   }
 }
 
-async function toggleTheme(event: MouseEvent) {
-  const nextTheme = !isDark.value
-  const documentWithTransition = document as Document & {
-    startViewTransition?: (callback: () => Promise<void>) => { ready: Promise<void> }
-  }
+function createThemeSnapshot(x: number, y: number) {
+  const siteShell = document.querySelector<HTMLElement>('.site-shell')
+  if (!siteShell)
+    return null
 
-  if (!documentWithTransition.startViewTransition || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const rootStyles = getComputedStyle(document.documentElement)
+  const overlay = document.createElement('div')
+  const snapshot = siteShell.cloneNode(true) as HTMLElement
+
+  overlay.className = 'theme-transition-overlay'
+  overlay.ariaHidden = 'true'
+  overlay.inert = true
+  overlay.style.colorScheme = isDark.value ? 'dark' : 'light'
+  overlay.style.setProperty('--theme-reveal-x', `${x}px`)
+  overlay.style.setProperty('--theme-reveal-y', `${y}px`)
+  overlay.style.setProperty('--theme-scroll-y', `${window.scrollY}px`)
+
+  for (const property of themeProperties)
+    overlay.style.setProperty(property, rootStyles.getPropertyValue(property))
+
+  snapshot.classList.add('theme-transition-snapshot')
+  snapshot.removeAttribute('id')
+  snapshot.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'))
+
+  const floatingElements = snapshot.querySelectorAll<HTMLElement>('.app-header, .to-top-button')
+  overlay.appendChild(snapshot)
+  floatingElements.forEach((element) => {
+    element.classList.add('theme-transition-floating')
+    overlay.appendChild(element)
+  })
+  document.body.appendChild(overlay)
+
+  return overlay
+}
+
+async function toggleTheme(event: MouseEvent) {
+  if (isThemeTransitioning)
+    return
+
+  const nextTheme = !isDark.value
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     applyTheme(nextTheme)
     return
   }
 
-  const x = event.clientX
-  const y = event.clientY
-  const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))
-  const transition = documentWithTransition.startViewTransition(async () => {
+  const button = event.currentTarget as HTMLElement | null
+  const buttonRect = button?.getBoundingClientRect()
+  const x = event.clientX || (buttonRect ? buttonRect.left + buttonRect.width / 2 : innerWidth / 2)
+  const y = event.clientY || (buttonRect ? buttonRect.top + buttonRect.height / 2 : innerHeight / 2)
+  const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y)) + 2
+  const overlay = createThemeSnapshot(x, y)
+
+  if (!overlay) {
+    applyTheme(nextTheme)
+    return
+  }
+
+  isThemeTransitioning = true
+  document.documentElement.classList.add('theme-transitioning')
+
+  try {
     applyTheme(nextTheme)
     await nextTick()
-  })
+    await new Promise<void>(resolve => requestAnimationFrame(() => resolve()))
 
-  await transition.ready
-  const clipPath = [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`]
-  document.documentElement.animate(
-    { clipPath: nextTheme ? [...clipPath].reverse() : clipPath },
-    {
-      duration: 400,
-      easing: 'ease-out',
-      pseudoElement: nextTheme ? '::view-transition-old(root)' : '::view-transition-new(root)',
-    },
-  )
+    const animation = overlay.animate(
+      [
+        { '--theme-reveal-radius': '0px' },
+        { '--theme-reveal-radius': `${radius}px` },
+      ],
+      {
+        duration: 400,
+        easing: 'ease-out',
+        fill: 'forwards',
+      },
+    )
+
+    await animation.finished.catch(() => undefined)
+  }
+  finally {
+    overlay.remove()
+    document.documentElement.classList.remove('theme-transitioning')
+    isThemeTransitioning = false
+  }
 }
 
 function printResume() {
@@ -101,7 +173,11 @@ onMounted(() => {
   window.addEventListener('scroll', updateScrollState, { passive: true })
 })
 
-onUnmounted(() => window.removeEventListener('scroll', updateScrollState))
+onUnmounted(() => {
+  window.removeEventListener('scroll', updateScrollState)
+  document.querySelector('.theme-transition-overlay')?.remove()
+  document.documentElement.classList.remove('theme-transitioning')
+})
 </script>
 
 <template>
