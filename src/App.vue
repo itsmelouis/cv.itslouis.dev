@@ -3,6 +3,7 @@ import { ArrowUpRight, Mail, MapPin } from '@lucide/vue'
 import { computed, nextTick, onMounted, onUnmounted, ref } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import BrandIcon from './components/BrandIcon.vue'
+import PrintResume from './components/PrintResume.vue'
 import ProjectItem from './components/ProjectItem.vue'
 import SectionHeading from './components/SectionHeading.vue'
 import SkillGroup from './components/SkillGroup.vue'
@@ -145,10 +146,6 @@ async function toggleTheme(event: MouseEvent) {
   }
 }
 
-function printResume() {
-  window.print()
-}
-
 function toTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
@@ -180,7 +177,6 @@ onUnmounted(() => {
     <AppHeader
       :is-dark="isDark"
       :show-to-top="showToTop"
-      @print="printResume"
       @to-top="toTop"
       @toggle-theme="toggleTheme"
     />
@@ -385,4 +381,6 @@ onUnmounted(() => {
       </a>
     </footer>
   </div>
+
+  <PrintResume :resume="resume" />
 </template>

@@ -23,7 +23,7 @@ Live at **[cv.itslouis.dev](https://cv.itslouis.dev)**.
 - **[Lucide](https://lucide.dev)** - interface icons
 - **[Cloudflare Workers](https://workers.cloudflare.com)** - static asset hosting and deployment
 
-The CV content is based on my public [JSON Resume](https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750), and the interface follows the design system of [itslouis.dev](https://itslouis.dev).
+The CV content is based on my public [JSON Resume](https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750), and the interface follows the design system of [itslouis.dev](https://itslouis.dev). The PDF button downloads a purpose-built, three-page A4 version generated from the same Vue data.
 
 ## Quick Start
 
@@ -46,9 +46,16 @@ pnpm dev
 ```bash
 pnpm dev              # Start the development server
 pnpm build            # Type-check and build for production
+pnpm resume:pdf       # Build and export the three-page A4 resume PDF
 pnpm preview          # Preview the production build locally
 pnpm deploy:dry-run   # Build and validate the Cloudflare deployment
 pnpm deploy           # Build and deploy to Cloudflare
+```
+
+Install Playwright's Chromium build once before the first PDF export:
+
+```bash
+pnpm exec playwright install chromium
 ```
 
 ## Deployment

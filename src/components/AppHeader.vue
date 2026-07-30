@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowUp, Moon, Printer, Sun } from '@lucide/vue'
+import { ArrowUp, Download, Moon, Sun } from '@lucide/vue'
 import BrandIcon from './BrandIcon.vue'
 
 defineProps<{
@@ -8,7 +8,6 @@ defineProps<{
 }>()
 
 const emit = defineEmits<{
-  print: []
   toTop: []
   toggleTheme: [event: MouseEvent]
 }>()
@@ -69,15 +68,15 @@ const emit = defineEmits<{
       >
         <BrandIcon brand="linkedin" :size="17" />
       </a>
-      <button
-        class="print-button inline-flex size-[38px] cursor-pointer items-center justify-center gap-[7px] rounded-[7px] border-0 bg-transparent p-0 font-mono text-xs text-text opacity-62 transition-[opacity,background-color,transform] duration-200 hover:bg-surface-raised hover:opacity-100 min-[721px]:h-[38px] min-[721px]:w-auto min-[721px]:px-[11px]"
-        type="button"
-        aria-label="Imprimer ou enregistrer le CV en PDF"
-        @click="emit('print')"
+      <a
+        class="print-button inline-flex size-[38px] cursor-pointer items-center justify-center gap-[7px] rounded-[7px] border-0 bg-transparent p-0 font-mono text-xs text-text no-underline opacity-62 transition-[opacity,background-color,transform] duration-200 hover:bg-surface-raised hover:opacity-100 min-[721px]:h-[38px] min-[721px]:w-auto min-[721px]:px-[11px]"
+        href="/Louis-Floquet-CV.pdf"
+        download="Louis-Floquet-CV.pdf"
+        aria-label="Télécharger le CV au format PDF"
       >
-        <Printer :size="17" :stroke-width="1.8" aria-hidden="true" />
+        <Download :size="17" :stroke-width="1.8" aria-hidden="true" />
         <span class="hidden min-[721px]:inline">PDF</span>
-      </button>
+      </a>
       <button
         class="icon-button inline-flex size-[38px] cursor-pointer items-center justify-center rounded-[7px] border-0 bg-transparent text-text opacity-62 transition-[opacity,background-color,transform] duration-200 hover:bg-surface-raised hover:opacity-100"
         type="button"
