@@ -27,7 +27,7 @@
   "work": [
     {
       "name": "Altazion",
-      "position": "Développeur Fullstack — Alternance",
+      "position": "Développeur Fullstack - Alternance",
       "url": "https://altazion.com",
       "startDate": "2023-09-01",
       "endDate": "2026-08-31",
@@ -45,7 +45,7 @@
     },
     {
       "name": "Anywr",
-      "position": "Développeur — Stage",
+      "position": "Développeur - Stage",
       "startDate": "2023-01-01",
       "endDate": "2023-02-01",
       "summary": "Contribution à plusieurs mini-projets internes dans un environnement professionnel agile.",
@@ -56,7 +56,7 @@
     },
     {
       "name": "Ax2lan",
-      "position": "Développeur 3D — Stage",
+      "position": "Développeur 3D - Stage",
       "startDate": "2022-05-01",
       "endDate": "2022-06-01",
       "summary": "Stage de découverte du monde professionnel réalisé en première année de BTS.",
@@ -95,8 +95,8 @@
       ]
     },
     {
-      "institution": "Lycée Henri Wallon — Valenciennes",
-      "area": "BTS SIO — option SLAM (Solutions Logicielles et Applications Métiers)",
+      "institution": "Lycée Henri Wallon - Valenciennes",
+      "area": "BTS SIO - option SLAM (Solutions Logicielles et Applications Métiers)",
       "studyType": "BTS (Bac+2)",
       "startDate": "2021-09-01",
       "endDate": "2023-07-01",
@@ -197,7 +197,7 @@
     },
     {
       "language": "Anglais",
-      "fluency": "Professionnel — TOEIC 895 (B2)"
+      "fluency": "Professionnel - TOEIC 895 (B2)"
     }
   ],
   "projects": [

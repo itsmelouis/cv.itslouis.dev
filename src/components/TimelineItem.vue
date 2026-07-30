@@ -30,7 +30,7 @@ const { details = [], badge } = defineProps<{
 
       <p v-if="summary" class="timeline-summary mt-[19px] mb-0 text-sm leading-[1.72] text-text-soft">{{ summary }}</p>
       <ul v-if="details.length" class="detail-list mt-[18px] mb-0 grid list-none gap-2 p-0 text-[13px] leading-[1.62] text-text-soft">
-        <li v-for="detail in details" :key="detail" class="relative pl-4 before:absolute before:top-0 before:left-px before:text-text-faint before:content-['—']">{{ detail }}</li>
+        <li v-for="detail in details" :key="detail" class="relative pl-4 before:absolute before:top-0 before:left-px before:text-text-faint before:content-['-']">{{ detail }}</li>
       </ul>
     </div>
   </article>

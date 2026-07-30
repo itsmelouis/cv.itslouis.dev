@@ -6,7 +6,7 @@
 [![Built with Vite](https://img.shields.io/badge/Built%20with-Vite-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
 [![Deployed on Cloudflare](https://img.shields.io/badge/Deployed%20on-Cloudflare-F38020?style=flat-square&logo=cloudflare&logoColor=white)](https://www.cloudflare.com)
 
-My online CV — a fast, accessible overview of my experience, skills, and projects.
+My online CV - a fast, accessible overview of my experience, skills, and projects.
 
 Live at **[cv.itslouis.dev](https://cv.itslouis.dev)**.
 
@@ -16,12 +16,12 @@ Live at **[cv.itslouis.dev](https://cv.itslouis.dev)**.
 
 ## Stack
 
-- **[Vue 3](https://vuejs.org)** — reactive user interface built with the Composition API
-- **[TypeScript](https://www.typescriptlang.org)** — type-safe application code
-- **[Vite](https://vite.dev)** — development server and production build tooling
-- **[Tailwind CSS 4](https://tailwindcss.com)** — utility-first styling compiled through the Vite plugin
-- **[Lucide](https://lucide.dev)** — interface icons
-- **[Cloudflare Workers](https://workers.cloudflare.com)** — static asset hosting and deployment
+- **[Vue 3](https://vuejs.org)** - reactive user interface built with the Composition API
+- **[TypeScript](https://www.typescriptlang.org)** - type-safe application code
+- **[Vite](https://vite.dev)** - development server and production build tooling
+- **[Tailwind CSS 4](https://tailwindcss.com)** - utility-first styling compiled through the Vite plugin
+- **[Lucide](https://lucide.dev)** - interface icons
+- **[Cloudflare Workers](https://workers.cloudflare.com)** - static asset hosting and deployment
 
 The CV content is based on my public [JSON Resume](https://gist.github.com/itsmelouis/9e1747cc5b704021a9af1eea5590a750), and the interface follows the design system of [itslouis.dev](https://itslouis.dev).
 

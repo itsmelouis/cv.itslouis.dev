@@ -44,7 +44,7 @@ function formatDate(date: string) {
 }
 
 function formatRange(startDate: string, endDate: string) {
-  return `${formatDate(startDate)} — ${formatDate(endDate)}`
+  return `${formatDate(startDate)} - ${formatDate(endDate)}`
 }
 
 function updateScrollState() {
