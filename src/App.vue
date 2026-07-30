@@ -26,8 +26,6 @@ const themeProperties = [
   '--border',
   '--border-strong',
   '--inverse',
-  '--success',
-  '--success-bg',
   '--dot-color',
   '--header-bg',
 ]
@@ -193,7 +191,6 @@ onUnmounted(() => {
 
     <main class="resume page-content mx-auto w-[min(calc(100%_-_40px),48rem)] pt-[126px] pb-20 min-[721px]:w-[min(calc(100%_-_64px),48rem)] min-[721px]:pt-[152px] min-[721px]:pb-28">
       <section class="hero relative" aria-labelledby="name">
-        <div class="availability mb-[26px] inline-flex items-center gap-2 rounded-md border border-[color-mix(in_srgb,var(--success)_30%,transparent)] bg-success-bg px-[9px] py-[5px] font-mono text-[11px] leading-[1.2] text-success"><span class="size-1.5 rounded-full bg-current shadow-[0_0_0_3px_color-mix(in_srgb,var(--success)_16%,transparent)]" aria-hidden="true"></span> Ouvert à de nouvelles opportunités</div>
         <h1 id="name" class="mb-0.5 text-[clamp(2.6rem,7vw,4rem)] leading-[1.05] font-[650] tracking-[-0.052em] text-text">{{ resume.basics.name }}</h1>
         <p class="role mb-6 text-[clamp(1.1rem,3vw,1.35rem)] tracking-[-0.022em] text-text-soft">{{ resume.basics.label }}</p>
 

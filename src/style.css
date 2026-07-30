@@ -42,8 +42,6 @@
   --color-border: var(--border);
   --color-border-strong: var(--border-strong);
   --color-inverse: var(--inverse);
-  --color-success: var(--success);
-  --color-success-bg: var(--success-bg);
   --font-sans: var(--sans);
   --font-mono: var(--mono);
 }
@@ -59,8 +57,6 @@
   --border: var(--color-graphite-200);
   --border-strong: var(--color-graphite-300);
   --inverse: #ffffff;
-  --success: #348352;
-  --success-bg: #eff8f1;
   --dot-color: rgba(0, 0, 0, 0.15);
   --header-bg: rgba(255, 255, 255, 0.82);
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
@@ -86,8 +82,6 @@
   --border: var(--color-graphite-800);
   --border-strong: var(--color-graphite-700);
   --inverse: var(--color-graphite-900);
-  --success: #72c18a;
-  --success-bg: #2b3d30;
   --dot-color: rgba(255, 255, 255, 0.1);
   --header-bg: rgba(34, 34, 34, 0.82);
   color-scheme: dark;
@@ -285,7 +279,6 @@ html.theme-transitioning *::after {
 
   .app-header,
   .to-top-button,
-  .availability,
   .site-footer {
     display: none !important;
   }
